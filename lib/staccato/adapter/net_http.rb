@@ -9,7 +9,9 @@ module Staccato
         end
 
         def post(params)
-          ::Net::HTTP.post_form(@uri, params)
+          Thread.new do
+            ::Net::HTTP.post_form(@uri, params)
+          end
         end
       end
     end
